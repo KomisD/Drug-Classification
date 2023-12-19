@@ -1,12 +1,8 @@
 # Drug-Classification
 
-## Introduction
-
-- **The Dataset:** https://www.kaggle.com/datasets/prathamtripathi/drug-classification/data
-- **Objectives of the analysis:** I tryied several methodes to find the best "doctor" model, so it can predict based on the features what type of drug a patient needs.
-
 ## Project Overview
 
+- **The Dataset:** https://www.kaggle.com/datasets/prathamtripathi/drug-classification/data
 This project applies machine learning techniques to classify drugs based on various patient metrics. It utilizes Support Vector Machine (SVM) algorithms, along with comparative analyses using Nearest Neighbor (KNN) and Nearest Class Centroid (NCC) classifiers. The project aims to evaluate the effectiveness of these models in predicting drug types based on patient characteristics.
 
 ### Features
