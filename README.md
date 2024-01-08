@@ -2,19 +2,24 @@
 
 ## Project Overview
 
-- **The Dataset:** https://www.kaggle.com/datasets/prathamtripathi/drug-classification/data
-- This project applies machine learning techniques to classify drugs based on various patient metrics. It utilizes Support Vector Machine (SVM) algorithms, along with comparative analyses using Nearest Neighbor (KNN) and Nearest Class Centroid (NCC) classifiers. The project aims to evaluate the effectiveness of these models in predicting drug types based on patient characteristics.
+- **The Dataset:** [Drug Classification Dataset on Kaggle](https://www.kaggle.com/datasets/prathamtripathi/drug-classification/data)
+- This repository contains two projects applying machine learning techniques for drug classification based on various patient metrics. 
 
-### Features
+## Projects
 
-- Implementation of SVM with linear kernel.
-- Cross-validation strategy to evaluate SVM performance.
-- PCA (Principal Component Analysis) for dimensionality reduction.
-- Comparative analysis with KNN and NCC classifiers.
+- **Project2_NNs.ipynb**: Utilizes Support Vector Machine (SVM) algorithms, along with comparative analyses using Nearest Neighbor (KNN) and Nearest Class Centroid (NCC) classifiers.
+- **Project3_NNs.ipynb**: Focuses on Radial Basis Function Neural Network (RBFN) implementation, along with comparative analyses using KNN and NCC classifiers.
+
+### Features Across Projects
+
+- **SVM and RBFN Implementations**: Linear kernel SVM and RBFN for drug classification.
+- **PCA (Principal Component Analysis)**: For dimensionality reduction in SVM.
+- **Cross-validation**: Strategy to evaluate model performances.
+- **Comparative Analysis**: With KNN and NCC classifiers in both projects.
 
 # Methodology
 
-### Preprocessing Steps
+## Preprocessing Steps (Common for Both Projects)
 
 1. **Encoding Categorical Values**:
    - **Binary Encoding**: Applied to the 'Sex' and 'Cholesterol' columns.
@@ -23,29 +28,28 @@
 2. **Feature Scaling**:
    - **StandardScaler**: Standardizes features by removing the mean and scaling to unit variance.
 
-### Parameter Selection and Model Tuning Methods
+## Parameter Selection and Model Tuning Methods
+
+### Project2_NNs.ipynb (SVM, KNN, NCC)
 
 1. **Support Vector Machine (SVM)**:
    - **Kernel**: Linear
    - **Random State**: 0
 
-2. **K-Nearest Neighbors (KNN)**:
-   - **Number of Neighbors (n_neighbors)**: 5
+2. **K-Nearest Neighbors (KNN)** and **Nearest Class Centroid (NCC)**:
+   - Similar parameters as detailed below.
+
+### Project3_NNs.ipynb (RBFN, KNN, NCC)
+
+1. **Radial Basis Function (RBFN)**:
+   - Neuron Count: Varied (e.g., 20, 30, 50).
+   - Gamma Value: Calculated from data variance or constant values.
+   - Prototype Initialization: Random or using KMeans clustering.
+
+2. **K-Nearest Neighbors (KNN)** and **Nearest Class Centroid (NCC)**:
+   - **Number of Neighbors (n_neighbors)**: 5 (KNN)
    - **Distance Metric**: Minkowski with \( p = 2 \) (Euclidean distance)
-
-3. **Nearest Class Centroid (NCC)**:
-   - **Metric**: Euclidean distance
-
-### Cross-Validation Strategy
-
-- **K-Fold Cross-Validation**: Different values of `n_splits` (2, 10, 15, 25) are experimented with.
-- **Shuffle**: Ensuring data is shuffled before splitting into batches.
-
-### Additional Points
-
-- **Principal Component Analysis (PCA)**: Used to reduce dimensionality.
-- **Model Comparison**: Comparing SVM with KNN and NCC models.
-
+   - **Metric for NCC**: Euclidean distance
 
 # Algorithm Explanation
 
@@ -67,9 +71,14 @@
 - **Centroid Calculation**: The centroid of a class is the average of all points in that class.
 - **Suitability**: Effective when classes are compact and well-separated.
 
+### Radial Basis Function (RBFN):
+   - **Neuron Count**: Experimented with different numbers of neurons in the hidden layer (e.g., 20, 30, 50). This parameter affects the capacity of the model to capture complex patterns.
+   - **Gamma Value**: Calculated based on data variance to determine the spread of the RBF or some constant values ranging from 0.5 to 2.
+   - **Prototype Initialization**: In some models, prototypes were initialized using KMeans clustering, which provides a more informed starting point for these centers and in others randomly select prototypes from the training data.
 
 # Results
 
+## Project2_NNs.ipynb (SVM, KNN, NCC)
 - **Simple Support Vector Machine (SVM)**: accuracy is `0.9375`
 - **Simple Support Vector Machine (SVM) with cross validation:** accuracy varies from `0.9901098` to `0.985` based on the number of splits
 - **Simple Support Vector Machine (SVM) with PCA Applayied:** accuracy varies based on the number of PCA  components with the highest `0.5`
@@ -77,6 +86,23 @@
  
 Since I didn't initialize a random state, results might slightly vary from time to time.
 
+## Project3_NNs.ipynb (RBFN, KNN, NCC)
+
+- **RBFN Performance**: Best at 88.75% accuracy for 50 neurons.
+- **Prototype Initialization**: No improvement using KMeans.
+- **Comparative analysis**: NC accuracy is `0.7625` and KNN `0.7`.
+
 # Discussion
 
+## Project2_NNs.ipynb (SVM, KNN, NCC)
+
 The results indicate a strong performance of the Simple Support Vector Machine (SVM) model, achieving an accuracy of `0.9375`. This high accuracy underscores SVM's effectiveness in handling the dataset's linear separability. Notably, the application of cross-validation to SVM further enhanced its robustness, with accuracy reaching as high as `0.9901098`, depending on the number of splits. This variability in accuracy with different splits highlights the importance of cross-validation in evaluating model performance more comprehensively. However, the introduction of PCA (Principal Component Analysis) to SVM led to a significant decrease in accuracy, with the highest being only `0.5`. This suggests that dimensionality reduction via PCA might be removing critical information necessary for accurate classification in this specific dataset. In comparison, Nearest Neighbor (KNN) and Nearest Class Centroid (NCC) classifiers demonstrated lower accuracy, with NCC achieving 0.7625 and KNN 0.7. This disparity in performance could be attributed to SVM's superior ability to manage the feature space and its boundaries, as opposed to the distance-based classification approach used by KNN and the centroid-based approach of NCC. 
+
+## Project3_NNs.ipynb (RBFN, KNN, NCC)
+- **RBFN Insights**: Best performance with 50 neurons, indicating capacity for complex pattern recognition.
+- **Prototype Initialization**: Lack of improvement with KMeans initialization.
+- **Model Comparisons**: Superior performance of RBFN over KNN and NCC in specific configurations.
+
+# Final Best Model
+
+- **Simple Support Vector Machine (SVM) with cross validation** with a stagering accuracy of `0.9901098`
