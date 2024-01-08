@@ -8,7 +8,7 @@
 ## Projects
 
 - **Project2_NNs.ipynb**: Utilizes Support Vector Machine (SVM) algorithms, along with comparative analyses using Nearest Neighbor (KNN) and Nearest Class Centroid (NCC) classifiers.
-- **Project3_NNs.ipynb**: Focuses on Radial Basis Function Neural Network (RBFN) implementation, along with comparative analyses using KNN and NCC classifiers.
+- **Project3_NNs.ipynb**: Focuses on Radial Basis Function Neural Network (RBFN) implementation **from scratch**, along with comparative analyses using KNN and NCC classifiers.
 
 ### Features Across Projects
 
